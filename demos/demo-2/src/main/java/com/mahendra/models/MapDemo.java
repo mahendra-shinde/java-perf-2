@@ -1,5 +1,6 @@
 package com.mahendra.models;
 
+import java.io.IOException;
 import java.util.*;
 
 public class MapDemo {
@@ -28,7 +29,15 @@ public class MapDemo {
 //			                      .findFirst()
 //			                      .orElse(null);
 			long timeAfter = System.nanoTime();
-			System.out.println("Found: "+c+" in "+(timeAfter-timeBefore)+" nano seconds");
+			System.out.println("Found: "+c+" in "+(timeAfter-timeBefore)+" nano seconds");			
+			System.out.println("Enter any key to exit..");
+			try {
+				System.in.read();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
     }
 	
 	

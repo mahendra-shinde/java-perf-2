@@ -67,7 +67,12 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [custId=" + custId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return new StringBuilder().append("Customer: ").append("Cust ID:").append(custId)
+				.append(", Name: ").append(firstName).append(" ").append(lastName)
+				.append(", Email: ").append(email)
+				.append(", Phone: ").append(phone)
+				.toString();
+		//return "Customer [custId=" + custId + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 }
