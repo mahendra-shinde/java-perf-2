@@ -2,12 +2,12 @@ package com.mahendra.models;
 
 import java.util.*;
 
-public class ListDemo {
-	static List<Customer> customers = new ArrayList<>();
+public class MapDemo {
+	static Map<Integer, Customer> customers = new HashMap<>();
 	
 	private static void initialize() {
 	    for (int i = 1; i <= 15000; i++) {
-            customers.add(new Customer(
+            customers.put(i ,new Customer(
                 i,
                 "FirstName" + i,
                 "LastName" + i,
@@ -22,7 +22,7 @@ public class ListDemo {
 			initialize();
 			System.out.println("Try finding customer with id 101");
 			long timeBefore = System.nanoTime();
-			Customer c = findById(101);
+			Customer c = customers.get(101); /// O(1)
 //			Customer c = customers.stream()
 //			                      .filter(cust -> cust.getCustId() == 101)
 //			                      .findFirst()
@@ -31,12 +31,6 @@ public class ListDemo {
 			System.out.println("Found: "+c+" in "+(timeAfter-timeBefore)+" nano seconds");
     }
 	
-	public static Customer findById(int id) {
-		for(Customer c : customers) {
-			if(c.getCustId() == id) return c;
-		}
-		return null;
-	}
 	
 	
 }
