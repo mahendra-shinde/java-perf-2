@@ -28,7 +28,7 @@ public class Main3 {
 			service.addCustomer(new Customer(101, "Customer 1", "Customer 1", "customer1@gmail.com","56357675"));
 			service.addCustomer(new Customer(102, "Customer 2", "Customer 2", "customer2@gmail.com","56357675"));
 			service.addCustomer(new Customer(103, "Customer 3", "Customer 3", "customer3@gmail.com","68768687"));
-		});
+		}, executor);
 		future2.whenComplete((res,ex)->{
 			if(ex==null) {
 				System.out.println("3 new customers added");
