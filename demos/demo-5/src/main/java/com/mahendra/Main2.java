@@ -10,10 +10,10 @@ public class Main2 {
 		Task2 task = new Task2();
 		ExecutorService service = Executors.newSingleThreadExecutor();
 		CompletableFuture<List<Customer>> future = CompletableFuture.supplyAsync(Main2::getCustomers, service);
-		
+
 		future.thenAccept(customers -> {
 			System.out.println("Received " + customers.size() + " customers");
-			for(Customer c : customers) {
+			for (Customer c : customers) {
 				System.out.println(c.getCustId() + " : " + c.getFirstName() + " " + c.getLastName());
 			}
 		}).exceptionally(ex -> {
@@ -21,23 +21,25 @@ public class Main2 {
 			return null;
 		}).whenComplete((res, ex) -> service.shutdown());
 		///////// ALTERNATE WAY /////////////
-		//CompletableFuture.supplyAsync(Main2::getCustomers, service)
-		
-		//.thenAccept(customers -> {
-		//	System.out.println("Received " + customers.size() + " customers");
-		//	for(Customer c : customers) {
-		//		System.out.println(c.getCustId() + " : " + c.getFirstName() + " " + c.getLastName());
-		//	}
-		//}).exceptionally(ex -> {
-		//	System.out.println("An error occurred: " + ex.getMessage());
-		//	return null;
-		//});
+		// CompletableFuture.supplyAsync(Main2::getCustomers, service)
+
+		// .thenAccept(customers -> {
+		// System.out.println("Received " + customers.size() + " customers");
+		// for(Customer c : customers) {
+		// System.out.println(c.getCustId() + " : " + c.getFirstName() + " " +
+		// c.getLastName());
+		// }
+		// }).exceptionally(ex -> {
+		// System.out.println("An error occurred: " + ex.getMessage());
+		// return null;
+		// });
 	}
-	public static List<Customer> getCustomers(){
+
+	public static List<Customer> getCustomers() {
 		System.out.println("Task2 is running in thread: " + Thread.currentThread().getName());
 		List<Customer> customers = new LinkedList<>();
-		
-		for(int i = 1; i <= 50; i++) {
+
+		for (int i = 1; i <= 50; i++) {
 			customers.add(new Customer(i, "First" + i, "Last" + i, "user" + i + "@example.com", "123-456-789" + i));
 			try {
 				Thread.sleep(1000); // Simulate some work with a 1-second sleep
