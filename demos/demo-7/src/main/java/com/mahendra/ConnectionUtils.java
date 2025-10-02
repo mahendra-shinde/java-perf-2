@@ -1,10 +1,14 @@
 package com.mahendra;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConnectionUtils {
 	private Connection con = null;
 	private static ConnectionUtils instance = null;
+	
+	//private Map<Integer, Connection> connectionPool = new HashMap<>();	
 	
 	private ConnectionUtils() {
 		try {

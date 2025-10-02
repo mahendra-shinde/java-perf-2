@@ -8,7 +8,7 @@ public class Main1 {
 		Connection con = ConnectionUtils.getInstance().getConnection();
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT emp_no, first_name, last_name FROM employees");
+			ResultSet rs = stmt.executeQuery("SELECT emp_no, first_name, last_name FROM employees LIMIT 100 OFFSET 50");
 			while(rs.next()) {
 				System.out.printf("%d %s %s\n", rs.getInt(1), rs.getString(2), rs.getString(3));
 			}
@@ -18,17 +18,15 @@ public class Main1 {
 			e.printStackTrace();
 		}
 		
-		try {
-			Statement stmt = con.createStatement();
+		try(Statement stmt = con.createStatement()) {
 			ResultSet rs = stmt.executeQuery("SELECT * FROM departments");
 			while(rs.next()) {
 				System.out.printf("%s %s\n", rs.getString(1), rs.getString(2));
 			}
 			rs.close();
-			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} // statement would be auto-closed here
 		
 		System.out.println("Closing the connection");
 		try {
